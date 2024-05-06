@@ -1,0 +1,27 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  background-color: #000;
+  height: 100dvh;
+  width: 100vw;
+}
+
+canvas{
+  display: block;
+  background-color: white;
+  border-radius: 50px;
+  margin: 100px;
+}
+
+button{
+  margin-left: 75%;
+}
+
+button{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
