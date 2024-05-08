@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
+</head>
+<body>
+<div id="data-container"></div>
+
+<button onclick="getData()">GET</button>
+
+<form action="http://localhost:3000/data" method="post">
+    <label for="username-input">Username</label>
+    <input type="text" name="username" id="username-input">
+    <label for="password-input">Password</label>
+    <input type="text" name="password" id="password-input">
+    <input type="submit" value="post">
+</form>
+</body>
+</html>

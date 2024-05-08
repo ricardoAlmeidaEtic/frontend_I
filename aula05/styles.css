@@ -1,0 +1,33 @@
+body{
+    background-color: white;
+}
+
+button{
+    display: block;
+    width: fit-content;
+    border: none;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+form{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    gap: 10px;
+}
+
+input{
+    padding: 10px;
+    border: 1px solid #cccccc;
+}
+
+input[type="submit"]{
+    margin-top: 15px;
+    background-color: #007bff;
+    color:white;
+    cursor:pointer;
+    text-transform: capitalize;
+    margin-left: auto;
+}
