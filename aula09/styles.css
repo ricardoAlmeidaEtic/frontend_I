@@ -1,75 +1,25 @@
-/* styles.css */
+:root {
+  --color-primary: #0ff126;
+  --color-secondary: #2c3e50;
+  --color-text: #212121;
+  --font-family: system-ui, sans-serif;
+  --speed: 1s;
 
-/* Apply a modern reset to ensure consistent styling */
-:root{
-  --primary-color:darkblue;
+  --galery-width: 200px;
 }
 
-html {
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-text);
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-}
-
+html,
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
 }
-
-span{
-  color:var(--primary-color)
-}
-
-/* Styles for the word-counter custom element */
-word-counter {
-    display: block;
-    margin: 20px auto;
-    max-width: 600px;
-    padding: 20px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-  }
-  
-  /* Styles for the textarea inside the word-counter custom element */
-  word-counter textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-  }
-  
-  /* Styles for the button inside the word-counter custom element */
-  word-counter button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Hover effect for the button */
-  word-counter button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Styles for the small tag inside the word-counter custom element */
-  word-counter small {
-    display: block;
-    margin-top: 10px;
-    color: #888;
-  }

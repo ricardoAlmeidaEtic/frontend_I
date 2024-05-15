@@ -1,0 +1,52 @@
+[
+    {
+      "title": "Mountain Landscape",
+      "description": "A majestic mountain range bathed in the golden light of sunset.",
+      "imageUrl": "https://img.freepik.com/free-photo/cute-kitten-sitting-outdoors-looking-camera-surrounded-by-snow-generated-by-artificial-intelligence_188544-84910.jpg"
+    },
+    {
+      "title": "Crystal Clear Lake",
+      "description": "A serene lake reflecting the clear blue sky and fluffy white clouds.",
+      "imageUrl": "https://i.pinimg.com/originals/9e/6e/6c/9e6e6c6cc7ead69d81df13ce2c7deb18.png"
+    },
+    {
+      "title": "Vibrant Cityscape",
+      "description": "A bustling cityscape with towering skyscrapers and colorful lights.",
+      "imageUrl": "https://c4.wallpaperflare.com/wallpaper/348/422/333/cat-4k-hd-wallpaper-preview.jpg"
+    },
+    {
+      "title": "Cozy Cabin",
+      "description": "A charming cabin nestled amongst the trees, perfect for a winter getaway.",
+      "imageUrl": "https://images.alphacoders.com/112/1121736.jpg"
+    },
+    {
+      "title": "Tropical Beach",
+      "description": "A pristine beach with white sand, turquoise water, and swaying palm trees.",
+      "imageUrl": "https://img.freepik.com/free-photo/cute-kitten-sitting-grass-staring-with-playful-curiosity-generated-by-artificial-intelligence_25030-63275.jpg"
+    },
+    {
+      "title": "Starry Night Sky",
+      "description": "A breathtaking night sky filled with millions of twinkling stars.",
+      "imageUrl": "https://img.pikbest.com/ai/illus_our/20230418/c0165a1ac82eff1505591f401b5dfa8e.jpg!w700wp"
+    },
+    {
+      "title": "Ancient Ruins",
+      "description": "Mysterious ruins of an ancient civilization, shrouded in history and mystery.",
+      "imageUrl": "https://wallpapercave.com/wp/wp8408447.jpg"
+    },
+    {
+      "title": "Blooming Flowers",
+      "description": "A field of vibrant flowers in full bloom, creating a tapestry of color.",
+      "imageUrl": "https://images7.alphacoders.com/111/1112855.jpg"
+    },
+    {
+      "title": "Waterfall Cascade",
+      "description": "A powerful waterfall cascading down a steep cliff, surrounded by lush greenery.",
+      "imageUrl": "https://images7.alphacoders.com/101/1013669.jpg"
+    },
+    {
+      "title": "Desert Landscape",
+      "description": "A vast and arid desert landscape with towering dunes and a vibrant sunset.",
+      "imageUrl": "https://www.pixel4k.com/wp-content/uploads/2021/03/cats-4k_1616872024.jpg"
+    }
+  ]
