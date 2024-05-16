@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Mountain Landscape",
+    "description": "A majestic mountain range bathed in the golden light of sunset.",
+    "imageUrl": "assets/images/mountain_landscape.jpg"
+  },
+  {
+    "title": "Crystal Clear Lake",
+    "description": "A serene lake reflecting the clear blue sky and fluffy white clouds.",
+    "imageUrl": "assets/images/crystal_clear_lake.jpg"
+  },
+  {
+    "title": "Vibrant Cityscape",
+    "description": "A bustling cityscape with towering skyscrapers and colorful lights.",
+    "imageUrl": "assets/images/vibrant_cityscape.jpg"
+  },
+  {
+    "title": "Cozy Cabin",
+    "description": "A charming cabin nestled amongst the trees, perfect for a winter getaway.",
+    "imageUrl": "assets/images/cozy_cabin.jpg"
+  },
+  {
+    "title": "Tropical Beach",
+    "description": "A pristine beach with white sand, turquoise water, and swaying palm trees.",
+    "imageUrl": "assets/images/tropical_beach.jpg"
+  },
+  {
+    "title": "Starry Night Sky",
+    "description": "A breathtaking night sky filled with millions of twinkling stars.",
+    "imageUrl": "assets/images/starry_night_sky.jpg"
+  },
+  {
+    "title": "Ancient Ruins",
+    "description": "Mysterious ruins of an ancient civilization, shrouded in history and mystery.",
+    "imageUrl": "assets/images/ancient_ruins.jpg"
+  }
+]
