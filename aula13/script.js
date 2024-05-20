@@ -1,15 +1,11 @@
 window.onload = () => {
     const webGallery = document.querySelector("web-gallery");
-    const webToggleButton = document.querySelector("web-toggle-button");
-    
-    webGallery.addEventListener("ready",(ev) =>{
-        console.log("gallery ready",ev.detail.numberofImages)
-    });
+    const webGalleryDetail = document.querySelector("web-gallery-detail");
 
-    webGallery.addEventListener("playPause",(ev) =>{
-        console.log("playPause: ",ev.detail.playPause)
-    });
-    
+    webGallery.addEventListener("item-clicked", (event) => {
+        webGalleryDetail.data = event.detail.data;
+    })
+
     webGallery.currentItem = 2;
     webGallery.dataURL = "assets/gallery_data.json";
 }

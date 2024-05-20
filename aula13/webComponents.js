@@ -2,10 +2,10 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>
 
-        /*ELEMENTS*/
         * {
             font-family: system-ui, sans-serif;
         }
+
         button {
             border: none;
             padding: 10px 20px;
@@ -14,6 +14,7 @@ template.innerHTML = `
             width: 90px;
             height: 64px;
         }
+
         button:active {
             transform: scale(0.9);
         }
@@ -24,7 +25,6 @@ template.innerHTML = `
             height: 500px;
         }
 
-        /*CLASSES*/
         .gallery {
             position: relative;
             display: flex;
@@ -34,22 +34,24 @@ template.innerHTML = `
             gap: 10px;
         }
 
-        /*IDS*/
         #play-pause {
             position: absolute;
             top: 10px;
             left: 10px;
         }
+
         #images-container {
             position: relative;
             display: flex;
             flex: 1;
             background-color: black;
         }
+
         #controls {
             display: flex;
             justify-content: space-between;
         }
+
     </style>
     <div class="gallery">
 
@@ -180,9 +182,11 @@ class WebGallery extends HTMLElement {
             const clone = itemTemplate.content.cloneNode(true);
             const element = clone.querySelector(".item");
 
-            element.onclick = () =>{
-                console.log(this.#detailContainer)
-                this.#detailContainer.imageUrl =item.imageUrl
+            element.onclick = () => {
+                const customEvent = new CustomEvent("item-clicked", {detail: {
+                    data: this.#galleryData[this.#currentItemIndex]
+                }})
+                this.dispatchEvent(customEvent);   
             }
 
             if(index === this.#currentItemIndex)  element.style.opacity = 1;
@@ -313,26 +317,26 @@ customElements.define('web-toggle-button', WebToggleButton);
 const WebGalleryDetailTemplate = document.createElement('template');
 WebGalleryDetailTemplate.innerHTML = `
 <style>
+    #imageDetail{
+        width: 500px;
+    }
 </style>
 
 
-<div id="detailContainer">
+<div id="detail-container">
     <img id="imageDetail" src="assets/images/default.jpg">
 </div>
 `;
 class WebGalleryDetail extends HTMLElement {
 
-    static observedAttributes = [];
-
     shadowRoot;
     #detailContainer = null;
-    #imageUrl = null;
-
+    #detailData = null;
     constructor() {
         super();
         this.shadowRoot = this.attachShadow({ mode: 'closed' });
         this.shadowRoot.appendChild(WebGalleryDetailTemplate.content.cloneNode(true));
-        this.#detailContainer = this.shadowRoot.querySelector("#detailContainer");
+        this.#detailContainer = this.shadowRoot.querySelector("#detail-container");
     }
 
     connectedCallback() {
@@ -340,14 +344,18 @@ class WebGalleryDetail extends HTMLElement {
     }
 
     attributeChangedCallback(attrName, oldVal, newVal) {
-        console.log("attrName",attrName)
-        console.log("oldVal",oldVal)
-        console.log("newVal",newVal)
+        console.log('oldVal', oldVal)
+        console.log(newVal)
+        this.#render(newVal);
     }
 
-    set imageUrl(value){
-        console.log(value)
-        this.#detailContainer.children[0].backgroundImage=value
+    #render() {
+        this.#detailContainer.querySelector("#imageDetail").src=this.#detailData.imageUrl;
+    }
+
+    set data(value) {
+        this.#detailData = value;
+        this.#render();
     }
 }
 customElements.define('web-gallery-detail', WebGalleryDetail);
