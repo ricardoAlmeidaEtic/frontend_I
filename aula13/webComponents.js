@@ -317,15 +317,56 @@ customElements.define('web-toggle-button', WebToggleButton);
 const WebGalleryDetailTemplate = document.createElement('template');
 WebGalleryDetailTemplate.innerHTML = `
 <style>
-    #imageDetail{
-        width: 500px;
+    #detail-container {
+        font-family: 'Poppins', sans-serif; /* Use the Poppins font */
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+
+    #imageTitle {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    #imageDescription {
+        font-size: 16px;
+        color: #666666;
+        margin-bottom: 20px;
+    }
+
+    #imageDetail {
+        display: block;
+        max-width: 100%;
+        height:350px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        margin-top:10px;
+    }
+
+    #imageDetail:hover {
+        transform: scale(1.05);
+    }
+
 </style>
 
 
-<div id="detail-container">
-    <img id="imageDetail" src="assets/images/default.jpg">
-</div>
+    <div id="detail-container">
+        <h1 id="imageTitle"></h1>
+        <span id="imageDescription"></span>
+        <img id="imageDetail" src="assets/images/default.jpg">
+    </div>
 `;
 class WebGalleryDetail extends HTMLElement {
 
@@ -351,6 +392,8 @@ class WebGalleryDetail extends HTMLElement {
 
     #render() {
         this.#detailContainer.querySelector("#imageDetail").src=this.#detailData.imageUrl;
+        this.#detailContainer.querySelector("#imageTitle").innerText=this.#detailData.title;
+        this.#detailContainer.querySelector("#imageDescription").innerText=this.#detailData.description;
     }
 
     set data(value) {
