@@ -2,7 +2,6 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>
 
-        /*ELEMENTS*/
         * {
             font-family: system-ui, sans-serif;
         }
@@ -12,7 +11,6 @@ template.innerHTML = `
             cursor: pointer;
         }
 
-        /*CLASSES*/
         .gallery {
             position: relative;
             display: flex;
@@ -22,7 +20,6 @@ template.innerHTML = `
             gap: 10px;
         }
 
-        /*IDS*/
         #images-container {
             position: relative;
             display: flex;
