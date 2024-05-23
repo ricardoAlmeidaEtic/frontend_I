@@ -1,11 +1,13 @@
-:root{
-    /*COLORS*/
+:root {
+
+    /* COLORS */
     --color-primary: #FFA800;
     --color-secondary: #BB0000;
     --color-terciary: #89BD54;
-    --color-text-dart: #444444;
+    --color-text-dark: #444444;
     --color-text-light: #EEEEEE;
 
-    /*padding*/
-
+    /** PADDING & MARGINS */
+    --h-padding: 20px;
+    --v-padding: 20px;
 }
