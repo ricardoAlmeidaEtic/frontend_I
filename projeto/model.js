@@ -1,29 +1,65 @@
-export default class TODOModel{
-    #modelData
-    constructor(){
-
-    }
-
-    async initialize(url){
-        const storageData = JSON.parse(localStorage.getItem('todo-list'));
-
-        if(storageData){
-            this.#modelData = storageData;
-        }else{
-            const req = await fetch(url)
-            this.#modelData = await req.json();
+export default class TodoModel {
+    #tasks = [
+        {
+            title: "Task 1",
+            items: [
+                {
+                    title: "Item 1",
+                    checked: "false"
+                },
+                {
+                    title: "Item 2",
+                    checked: "false"
+                },
+                {
+                    title: "Item 3",
+                    checked: "true"
+                }
+            ]
+        },
+        {
+            title: "Task 2",
+            items: [
+                {
+                    title: "Item 4",
+                    checked: "false"
+                },
+                {
+                    title: "Item 5",
+                    checked: "true"
+                },
+                {
+                    title: "Item 6",
+                    checked: "false"
+                }
+            ]
         }
+    ];
 
-        window.localStorage.setItem('todo-list', JSON.stringify(this.#modelData))
+    constructor() {
+
+        if(!localStorage.getItem("todos")){ 
+            localStorage.setItem("todos", JSON.stringify(this.#tasks));
+        }
     }
 
-    addItem(obj){
-        this.#modelData.push(obj)
-        console.log(this.#modelData)
-        window.localStorage.setItem('todo-list', JSON.stringify(this.#modelData))
+    addTask(task) {
+        this.#tasks.push(task);
+        this.#updateLocalStorage();
+    }
+    deleteTask(index) {
+        this.#tasks.splice(index, 1);
+        this.#updateLocalStorage();
+    }
+    getTasks() {
+        return JSON.parse(localStorage.getItem("todos"));
+    }
+
+    #updateLocalStorage() {
+        localStorage.setItem("todos", JSON.stringify(this.#tasks));
     }
 
     get data(){
-        return this.#modelData;
+        return this.#tasks
     }
 }

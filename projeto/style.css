@@ -35,13 +35,24 @@ main {
     max-width: 800px;
     max-height: 900px;
     background-color: grey;
+    overflow: hidden;
 }
 
 #lists-container {
     position: relative;
-    display: block;
+    display: grid;
+    grid-template-columns: 100% 100%;
     flex: 1;
     background-color: white;
+    transition: transform var(--speed) ease-in-out;
+}
+
+#tasks{
+    transition: transform var(--speed) ease-in-out;
+}
+
+#items{
+    transition: transform var(--speed) ease-in-out;
 }
 
 footer {

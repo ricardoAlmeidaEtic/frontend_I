@@ -10,4 +10,7 @@
     /** PADDING & MARGINS */
     --h-padding: 20px;
     --v-padding: 20px;
+    --gap: 20px;
+
+    --speed: 0.5s;
 }

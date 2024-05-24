@@ -139,8 +139,8 @@ class WebGallery extends HTMLElement {
             toggleButton.addEventListener("toggle", (ev) => {
                 this.#playPause();
                 const event = new CustomEvent('play-pause', {detail: {
-                        isPlaying: this.#intervalID !== null 
-                    }});
+                    isPlaying: this.#intervalID !== null 
+                }});
                 this.dispatchEvent(event);
             })
         });
