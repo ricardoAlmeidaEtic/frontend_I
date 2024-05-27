@@ -341,10 +341,8 @@ class TaskItem extends HTMLElement {
         document.removeEventListener("mouseup", this.mouseUp);
         document.removeEventListener("mousemove", this.mouseMove);
 
-        if (this.#currentX === this.#maxX || this.#template == checkItemTemplate){
-            const event = new CustomEvent('delete');
-            console.log("delete!");
-            this.dispatchEvent(event);
+        if (this.#currentX === this.#maxX){
+            this.dispatchEvent(new CustomEvent("delete"));
         }
 
         this.#front.style.transition = 'transform .15s ease-in-out';

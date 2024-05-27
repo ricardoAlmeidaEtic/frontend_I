@@ -43,8 +43,6 @@ class Item {
         document.removeEventListener("mouseup", this.mouseUp);
         document.removeEventListener("mousemove", this.mouseMove);
 
-        if(this.#currentX === this.#maxX) this.#callback("delete!");
-
         this.#front.style.transition = 'transform .15s ease-in-out';
         this.#front.style.transform = 'translateX(0)';
 

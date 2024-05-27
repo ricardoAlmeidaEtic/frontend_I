@@ -47,12 +47,29 @@ export default class TodoModel {
         this.#tasks.push(task);
         this.#updateLocalStorage();
     }
+
     deleteTask(index) {
+        console.log("this.#tasks",this.#tasks)
         this.#tasks.splice(index, 1);
         this.#updateLocalStorage();
     }
+    
+    addItem(task, item) {
+        this.#tasks[task].items.push(item);
+        this.#updateLocalStorage();
+    }
+    
+    deleteItem(task, index) {
+        this.#tasks[task].items.splice(index, 1);
+        this.#updateLocalStorage();
+    }
+
     getTasks() {
         return JSON.parse(localStorage.getItem("todos"));
+    }
+
+    getItems(taskIndex) {
+        return this.#tasks[taskIndex].items;
     }
 
     #updateLocalStorage() {
