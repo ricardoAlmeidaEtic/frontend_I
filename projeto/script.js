@@ -19,15 +19,12 @@ window.onload = async () => {
 
     const addModal = document.querySelector("add-modal");
     addModal.addEventListener("confirm", (event) => {
-        console.log("event",event.detail.value)
-        if(todoHeader.state == "tasks"){
+        if(todoHeader.state === "tasks"){
             model.addTask(event.detail.value);
             buildTasksList(model.getTasks());
             addModal.hide();
         } else {
-            console.log("currentIndexItem",currentIndexItem)
             model.addItem(currentIndexItem,event.detail.value);
-            console.log("currentIndexItem",currentIndexItem)
             buildItemsList(currentIndexItem,model.getItems(currentIndexItem))
             addModal.hide();
         }
@@ -40,44 +37,73 @@ window.onload = async () => {
     };
     
     const buildTasksList = (tasks) => {
+        console.log("tasks",tasks)
+        console.log("tasks.length",tasks.length)
         tasksContainer.innerHTML="" //clear tasks list
-        tasks.forEach((task, indexElement) => {
-            const taskElement = new TaskItem(itemTemplate);
-            taskElement.data = task;
 
-            taskElement.addEventListener("delete", () => {
-                model.deleteTask(indexElement)
-                listsContainer.style.transform = "translateX(0)";
-                todoHeader.state = "tasks";
-                buildTasksList(model.getTasks());
-            })
+        if(tasks.length !== 0){
+            tasks.forEach((task, indexElement) => {
+                const taskElement = new TaskItem(itemTemplate);
+                taskElement.data = task;
 
-            taskElement.onclick = () =>{
-                todoHeader.state = "items"; //set header state to items
-                todoHeader.taskName = task.title; //set header label to task title
-                listsContainer.style.transform = "translateX(-100%)"; //slide list-container to items
-                buildItemsList(indexElement,task.items)
-                currentIndexItem = indexElement;
-            }
+                taskElement.addEventListener("delete", () => {
+                    model.deleteTask(indexElement)
+                    listsContainer.style.transform = "translateX(0)";
+                    todoHeader.state = "tasks";
+                    buildTasksList(model.getTasks());
+                })
 
-            tasksContainer.appendChild(taskElement);
-        });
+                taskElement.onclick = () =>{
+                    todoHeader.state = "items"; //set header state to items
+                    todoHeader.taskName = task.title; //set header label to task title
+                    listsContainer.style.transform = "translateX(-100%)"; //slide list-container to items
+                    buildItemsList(indexElement,task.items)
+                }
+
+                tasksContainer.appendChild(taskElement);
+            });
+        }else{
+            console.log("clear")
+            const text = document.createElement("h1");
+            text.innerText ="Não existem tasks/items criados"
+            text.style.display = "flex"
+            text.style.justifyContent="center";
+            text.style.marginTop="50%"
+            tasksContainer.appendChild(text);
+        }
     }
 
     const buildItemsList = (indexElement,items) => {
+        currentIndexItem = indexElement;
         itemsContainer.innerHTML="" //clear items list
-        items.forEach((task,index) => {
-            const taskItem = new TaskItem(checkItemTemplate);
-            taskItem.data = task;
 
-            taskItem.addEventListener("delete", () => {
-                console.log(index)
-                model.deleteItem(indexElement, index)
-                buildItemsList(indexElement,model.getItems(indexElement));
-            })
-            
-            itemsContainer.appendChild(taskItem);
-        });
+        if(items.length !== 0){
+            items.forEach((task,index) => {
+                const taskItem = new TaskItem(checkItemTemplate);
+                taskItem.data = task;
+
+                taskItem.addEventListener("delete", () => {
+                    model.deleteItem(indexElement, index)
+                    buildItemsList(indexElement,model.getItems(indexElement));
+                })
+
+                taskItem.addEventListener("checked", (ev) => {
+                    console.log("checked2",ev.detail.checked)
+                    model.updateItem(indexElement, index, ev.detail.checked);
+                });
+                
+                itemsContainer.appendChild(taskItem);
+            });
+        } else{
+            console.log("clear")
+            const text = document.createElement("h1");
+            text.innerText ="Não existem tasks/items criados"
+            text.style.display = "flex"
+            text.style.justifyContent="center";
+            text.style.marginTop="50%"
+            itemsContainer.appendChild(text);
+        }
+
     }
 
     buildTasksList(model.getTasks());

@@ -122,6 +122,23 @@ class TodoModal extends HTMLElement {
         }
 
         const input = this.shadowRoot.querySelector("input");
+
+        input.addEventListener("keydown", (event) =>{
+            if (event.key === "Enter") {
+                if(input.value === "") return;
+
+                const event = new CustomEvent('confirm', {detail: {
+                    value:input.value
+                }});
+
+                this.dispatchEvent(event);
+                input.value = ""
+            }
+            else if(event.key === "Escape"){
+                this.hide();
+            }
+        });
+
         this.shadowRoot.querySelector("#confirm").onclick = () =>{
             if(input.value === "") return;
 
@@ -238,6 +255,7 @@ class TodoHeader extends HTMLElement {
                     this.#icon.style.display = "initial";
                 }
                 break;
+
             case 'task-name':
                 this.#taskName.innerText = newVal;
                 break;
@@ -263,6 +281,7 @@ customElements.define("todo-header", TodoHeader);
 const itemTemplate = document.createElement('template');
 itemTemplate.innerHTML = `
     <style>
+    
         * {
             margin: 0;
             padding: 0;
@@ -315,6 +334,7 @@ itemTemplate.innerHTML = `
             min-width: 46px;
             min-height: 46px;
         }
+
     </style>
 
     <div id="task-element">
@@ -399,6 +419,16 @@ checkItemTemplate.innerHTML = `
         padding: 20px;
     }
 
+    .item-empty{
+        display:none;
+        width:100%;
+    }
+
+    .item-empty h1{
+        color:black;
+        text-align:center;
+    }
+
 </style>
 <div id="item-element">
     <div class="button">
@@ -432,9 +462,11 @@ class TaskItem extends HTMLElement {
     #callback;
     #taskData;
     shadowRoot;
-    #checked = false;
+    #checked;
     #template;
     #id;
+
+    static observedAttributes = ['checked'];
 
     constructor(template, cb) {
         super();
@@ -445,23 +477,46 @@ class TaskItem extends HTMLElement {
         this.#front = this.shadowRoot.querySelector(".front");
     }
 
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        switch (attrName) {
+            case 'title':
+                this.shadowRoot.querySelector("label").innerText = newVal;
+                break;
+            default:
+                break;
+        }
+    }
+    
     connectedCallback() {
         const button = this.shadowRoot.querySelector(".button");
-
+        
         this.mouseUp = this.mouseUp.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
-
+        
         button.onmousedown = (ev) => this.#mouseDown(ev);
-
         button.onclick = () => {
             if (this.#currentX === 0) {
                 if(this.#template == checkItemTemplate){
                     this.#checked =! this.#checked;
                     console.log("this.#checked",this.#checked)
                     button.querySelector('svg').style.display = this.#checked ? 'block' : 'none';
+
+                    const event = new CustomEvent('checked', {detail: {
+                        checked: this.#checked
+                    }});
+        
+                    this.dispatchEvent(event);
                 }
             }
         };
+    }
+
+    get checked() {
+        return this.getAttribute("checked");
+    }
+
+    set checked(val) {
+        this.setAttribute("checked", val);
     }
 
     get data(){
@@ -478,8 +533,8 @@ class TaskItem extends HTMLElement {
             const label = this.shadowRoot.querySelector("label");
             label.innerText = this.#taskData.title;
             if(this.#template == checkItemTemplate){
-                this.shadowRoot.querySelector("svg").style.display = this.#taskData.checked == "true" ? 'block' : 'none';
-                this.#checked = this.#taskData.checked == "true" ? true : false;
+                this.#checked = this.#taskData.checked;
+                this.shadowRoot.querySelector('svg').style.display = this.#checked ? 'block' : 'none';
             }
         }
     }
